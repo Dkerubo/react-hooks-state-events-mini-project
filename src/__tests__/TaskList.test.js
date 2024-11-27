@@ -1,9 +1,10 @@
-import "@testing-library/jest-dom";
-import { render } from "@testing-library/react";
+// src/__tests__/TaskList.test.js
+import { render, screen } from "@testing-library/react";
 import TaskList from "../components/TaskList";
-import { TASKS } from "../data";
+import { TASKS } from "../data"; // Adjust path if necessary
 
-test("displays all items when initially rendered", () => {
-  const { container } = render(<TaskList tasks={TASKS} />);
-  expect(container.querySelectorAll(".task")).toHaveLength(TASKS.length);
+test("displays all tasks when initially rendered", () => {
+  render(<TaskList tasks={TASKS} />);
+  const taskItems = screen.getAllByRole("listitem");
+  expect(taskItems.length).toBe(TASKS.length);
 });
